@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Кубики & Карти підберуть настільні ігри для вашої компанії, не надішлють дублікатів і допоможуть легко розібратися з правилами.">
+    <title>Кубики & Карти — вечори, які збирають</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white font-sans text-[#111418] antialiased">
+    <a href="#main" class="sr-only rounded-lg bg-white px-4 py-3 text-[#111418] focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:ring-2 focus:ring-[#E63946]">Перейти до вмісту</a>
+
+    <!-- Шапка сайту: логотип, навігація та перехід до квізу -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <!-- Основна навігація та адаптивне меню -->
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Головна навігація">
+        <a href="#home" class="flex min-h-11 items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946]" aria-label="Кубики & Карти — на головну">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-[#E63946] text-white" aria-hidden="true">
+            <svg viewBox="0 0 32 32" class="h-6 w-6" fill="none">
+              <path d="M8 5.5 16 2l8 3.5v9L16 18l-8-3.5v-9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M8 5.5 16 9l8-3.5M16 9v9M11.5 20.5l4.5 2 4.5-2M16 22.5v7M9 25l7 3 7-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="7" r="1" fill="currentColor"/><circle cx="20" cy="7" r="1" fill="currentColor"/><circle cx="16" cy="13" r="1" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="text-base font-extrabold tracking-tight sm:text-lg">Кубики <span class="text-[#E63946]">&amp;</span> Карти</span>
+        </a>
+
+        <button id="menu-toggle" type="button" class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-slate-200 text-[#111418] transition duration-200 hover:bg-slate-50 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2 lg:hidden" aria-label="Відкрити меню" aria-expanded="false" aria-controls="site-menu">
+          <svg id="menu-icon" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+        </button>
+
+        <!-- Посилання меню, вхід і CTA квізу -->
+        <div id="site-menu" class="absolute left-0 right-0 top-full hidden border-b border-slate-200 bg-white p-4 shadow-lg lg:static lg:flex lg:items-center lg:gap-7 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
+          <div class="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-6">
+            <a class="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-[#E63946] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2" href="#home">Головна</a>
+            <a class="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-[#E63946] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2" href="#catalog">Каталог</a>
+            <a class="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-[#E63946] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2" href="#how-it-works">Про нас</a>
+            <a class="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-[#E63946] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2" href="#faq">FAQ</a>
+            <a class="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-[#E63946] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2" href="#contacts">Контакти</a>
+          </div>
+          <div class="mt-3 flex flex-col gap-2 sm:flex-row lg:mt-0">
+            <a href="#contacts" class="inline-flex min-h-11 items-center justify-center rounded-xl px-4 text-sm font-semibold text-[#111418] transition duration-200 hover:bg-slate-100 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Увійти</a>
+            <a href="#quiz" class="inline-flex min-h-11 items-center justify-center rounded-full bg-[#E63946] px-5 text-sm font-bold text-white shadow-sm transition duration-200 hover:bg-[#C82230] hover:shadow-md active:bg-[#A10F1D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Пройти квіз <span class="ml-2" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Основний вміст лендингу -->
+    <main id="main">
+      <!-- Перший екран: пропозиція сервісу та візуальний блок боксу -->
+      <section id="home" class="overflow-hidden bg-[#F7F8FA]">
+        <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
+          <div>
+            <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-4 py-2 text-sm font-semibold text-[#A10F1D] shadow-sm">
+              <span class="h-2 w-2 rounded-full bg-[#E63946]" aria-hidden="true"></span>
+              Більше гри. Менше вагань.
+            </p>
+            <h1 class="max-w-2xl text-4xl font-extrabold leading-tight tracking-tight text-[#111418] sm:text-5xl lg:text-6xl">Ідеальний вечір настільних ігор <span class="text-[#E63946]">без складнощів та сумнівів вибору</span></h1>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-slate-600">Розкажіть про свою компанію — наш розумний підбір запропонує гру за настроєм, досвідом і часом. Жодних дублікатів, лише привід зібратися.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="#quiz" class="inline-flex min-h-12 items-center justify-center rounded-full bg-[#E63946] px-7 text-base font-bold text-white shadow-md transition duration-200 hover:bg-[#C82230] hover:shadow-lg active:bg-[#A10F1D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Підібрати ідеальний вечір <span class="ml-2" aria-hidden="true">→</span></a>
+              <a href="#how-it-works" class="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white px-7 text-base font-bold text-[#111418] transition duration-200 hover:bg-slate-50 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Як це працює</a>
+            </div>
+            <div class="mt-8 flex items-center gap-3">
+              <div class="flex -space-x-2" aria-hidden="true">
+                <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-[#F7F8FA] bg-amber-100 text-sm">🎲</span>
+                <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-[#F7F8FA] bg-rose-100 text-sm">🃏</span>
+                <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-[#F7F8FA] bg-sky-100 text-sm">✨</span>
+              </div>
+              <p class="text-sm text-slate-600"><strong class="text-[#111418]">98% точних підборів</strong><br>за відгуками наших гравців</p>
+            </div>
+          </div>
+
+          <!-- Ілюстрація персоналізованого ігрового боксу -->
+          <div class="relative mx-auto w-full max-w-xl" aria-label="Ігровий набір для вашого наступного вечора">
+            <div class="absolute -left-8 top-8 h-32 w-32 rounded-full bg-amber-200/70 blur-2xl" aria-hidden="true"></div>
+            <div class="absolute -right-8 bottom-6 h-40 w-40 rounded-full bg-rose-200/80 blur-2xl" aria-hidden="true"></div>
+            <div class="relative grid aspect-[4/3] place-items-center overflow-hidden rounded-[2rem] bg-[#1D1D1F] p-6 shadow-2xl sm:p-10">
+              <div class="absolute inset-0 opacity-30" aria-hidden="true">
+                <div class="absolute -left-8 top-8 h-36 w-36 rounded-full border border-white/40"></div>
+                <div class="absolute bottom-0 right-0 h-64 w-64 rounded-full border border-white/30"></div>
+                <div class="absolute left-1/2 top-0 h-full w-px rotate-45 bg-white/20"></div>
+              </div>
+              <div class="relative grid w-full max-w-sm rotate-[-4deg] grid-cols-2 gap-3 sm:gap-4">
+                <div class="flex aspect-[4/5] flex-col justify-between rounded-2xl bg-[#E63946] p-4 text-white shadow-xl sm:p-6">
+                  <span class="text-xs font-bold uppercase tracking-[0.2em]">Ваш вечір</span>
+                  <div><span class="text-5xl" aria-hidden="true">🎲</span><p class="mt-4 text-2xl font-extrabold">Граймо!</p><p class="mt-1 text-sm text-white/80">Знайшли вашу гру</p></div>
+                </div>
+                <div class="mt-8 flex aspect-[4/5] flex-col justify-between rounded-2xl bg-[#F4D58D] p-4 text-[#1D1D1F] shadow-xl sm:mt-10 sm:p-6">
+                  <span class="text-xs font-bold uppercase tracking-[0.2em]">Ідеально для</span>
+                  <div><span class="text-5xl" aria-hidden="true">🃏</span><p class="mt-4 text-2xl font-extrabold">4 друзів</p><p class="mt-1 text-sm text-[#1D1D1F]/70">Легка стратегія · 45 хв</p></div>
+                </div>
+              </div>
+              <div class="absolute bottom-4 left-4 rounded-xl bg-white px-4 py-3 shadow-lg sm:bottom-8 sm:left-8">
+                <p class="text-xs font-medium text-slate-500">Підібрано саме для вас</p><p class="mt-0.5 text-sm font-bold text-[#111418]">Без повторів у колекції ✓</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Квіз підбору гри з прогресом, кроками та результатом -->
+      <section id="quiz" class="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="mx-auto mb-10 max-w-2xl text-center">
+            <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#A10F1D]">Ваш вечір — ваші правила</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Знайдемо гру до вашого настрою</h2>
+            <p class="mt-4 text-lg leading-7 text-slate-600">Чотири короткі питання — і ми знаємо, що покласти у ваш бокс.</p>
+          </div>
+
+          <form id="quiz-form" class="rounded-3xl border border-slate-200 bg-white p-5 shadow-lg sm:p-8" novalidate>
+            <!-- Індикатор прогресу квізу -->
+            <div class="mb-8">
+              <div class="mb-3 flex items-center justify-between gap-4">
+                <p id="quiz-step-label" class="text-sm font-bold text-[#111418]" aria-live="polite">Крок 1 із 4</p>
+                <p id="quiz-progress-label" class="text-sm font-medium text-slate-500">25% завершено</p>
+              </div>
+              <div class="h-2 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-label="Прогрес квізу" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" id="quiz-progress">
+                <div id="quiz-progress-bar" class="h-full w-1/4 rounded-full bg-[#E63946] transition-all duration-300"></div>
+              </div>
+            </div>
+
+            <!-- Крок 1: кількість гравців -->
+            <fieldset data-quiz-step="0">
+              <legend tabindex="-1" class="text-xl font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] sm:text-2xl">Скільки вас буде за столом?</legend>
+              <p class="mt-2 text-slate-600">Порахуйте всіх — навіть тих, хто «тільки подивитися».</p>
+              <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="players" value="2" required><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">2 гравці</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="players" value="3-4"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">3–4 гравці</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="players" value="5-6"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">5–6 гравців</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="players" value="7+"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">7 і більше</span></label>
+              </div>
+            </fieldset>
+
+            <!-- Крок 2: тривалість партії -->
+            <fieldset data-quiz-step="1" hidden>
+              <legend tabindex="-1" class="text-xl font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] sm:text-2xl">Скільки часу маєте на партію?</legend>
+              <p class="mt-2 text-slate-600">Підберемо гру, яка встигне стати улюбленою.</p>
+              <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="duration" value="quick" required><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">До 30 хвилин</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="duration" value="medium"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">30–60 хвилин</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="duration" value="long"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Цілий вечір</span></label>
+              </div>
+            </fieldset>
+
+            <!-- Крок 3: досвід гравців -->
+            <fieldset data-quiz-step="2" hidden>
+              <legend tabindex="-1" class="text-xl font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] sm:text-2xl">Який у вас ігровий досвід?</legend>
+              <p class="mt-2 text-slate-600">У хорошій грі знайдеться місце і новачкам, і стратегам.</p>
+              <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="experience" value="new" required><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Ми новачки</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="experience" value="some"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Граємо час від часу</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="experience" value="expert"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Досвідчені гравці</span></label>
+              </div>
+            </fieldset>
+
+            <!-- Крок 4: настрій вечора -->
+            <fieldset data-quiz-step="3" hidden>
+              <legend tabindex="-1" class="text-xl font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] sm:text-2xl">Який настрій у вашого вечора?</legend>
+              <p class="mt-2 text-slate-600">Оберіть те, чого хочеться саме зараз.</p>
+              <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="mood" value="laugh" required><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Більше сміху й спілкування</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="mood" value="strategy"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Стратегія і виклик</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="mood" value="co-op"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Грати командою</span></label>
+                <label class="cursor-pointer"><input class="peer sr-only" type="radio" name="mood" value="family"><span class="flex min-h-14 items-center justify-center rounded-xl border border-slate-200 px-3 text-center font-semibold peer-checked:border-[#E63946] peer-checked:bg-rose-50 peer-checked:text-[#A10F1D] peer-focus-visible:ring-2 peer-focus-visible:ring-[#E63946]">Затишно всією родиною</span></label>
+              </div>
+            </fieldset>
+
+            <!-- Персональна рекомендація після проходження квізу -->
+            <div id="quiz-result" class="mt-6 hidden rounded-2xl bg-rose-50 p-5" role="status" aria-live="polite">
+              <p class="text-sm font-bold uppercase tracking-wide text-[#A10F1D]">Ваш рецепт вечора</p>
+              <h3 id="quiz-result-title" class="mt-2 text-xl font-extrabold"></h3>
+              <p id="quiz-result-description" class="mt-2 leading-7 text-slate-700"></p>
+              <a href="#catalog" class="mt-4 inline-flex min-h-11 items-center rounded-lg font-bold text-[#A10F1D] underline decoration-2 underline-offset-4 transition duration-200 hover:text-[#C82230] hover:drop-shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Переглянути ігри <span class="ml-2" aria-hidden="true">→</span></a>
+            </div>
+            <p id="quiz-error" class="mt-4 hidden text-sm font-semibold text-[#A10F1D]" role="alert">Оберіть відповідь, щоб продовжити.</p>
+
+            <!-- Керування переходом між кроками -->
+            <div class="mt-8 flex flex-col-reverse justify-between gap-3 border-t border-slate-100 pt-6 sm:flex-row">
+              <button id="quiz-back" type="button" class="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-300 px-6 font-bold text-[#111418] transition duration-200 hover:bg-slate-50 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2 disabled:cursor-not-allowed" disabled>← Назад</button>
+              <button id="quiz-next" type="button" class="inline-flex min-h-12 items-center justify-center rounded-full bg-[#E63946] px-7 font-bold text-white shadow-sm transition duration-200 hover:bg-[#C82230] hover:shadow-md active:bg-[#A10F1D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Далі <span class="ml-2" aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Каталог популярних настільних ігор -->
+      <section id="catalog" class="scroll-mt-24 bg-[#F7F8FA] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div class="max-w-2xl">
+              <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#A10F1D]">Знайомство з фаворитами</p>
+              <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Ігри, що збирають за столом</h2>
+              <p class="mt-4 text-lg leading-7 text-slate-600">Кілька перевірених хітів — а далі підберемо бокс саме для вас.</p>
+            </div>
+            <a href="#quiz" class="inline-flex min-h-11 items-center rounded-lg font-bold text-[#A10F1D] transition duration-200 hover:text-[#C82230] hover:drop-shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Увесь каталог <span class="ml-2" aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Картка гри: Скажи інакше -->
+            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <div class="relative mb-4 h-48 w-full overflow-hidden rounded-2xl">
+                <img src="images/skazhy_inakshe.jpg" alt="Гра Скажи інакше" class="h-full w-full object-cover">
+              </div>
+              <div class="p-5">
+                <div class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600"><span class="rounded-full bg-slate-100 px-3 py-1.5">3–8 гравців</span><span class="rounded-full bg-slate-100 px-3 py-1.5">30 хв</span></div>
+                <h3 class="mt-4 text-xl font-extrabold">Скажи інакше</h3>
+                <p class="mt-2 min-h-12 text-sm leading-6 text-slate-600">Пояснюйте, вгадуйте й смійтеся. Ідеальний розігрів для компанії.</p>
+                <a href="#quiz" class="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[#E63946] px-4 font-bold text-[#A10F1D] shadow-sm transition duration-200 hover:bg-[#E63946] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Отримати цю гру</a>
+              </div>
+            </article>
+
+            <!-- Картка гри: Разом до мети -->
+            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <div class="relative mb-4 h-48 w-full overflow-hidden rounded-2xl">
+                <img src="images/razom_do_mety.jpg" alt="Гра Разом до мети" class="h-full w-full object-cover">
+              </div>
+              <div class="p-5">
+                <div class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600"><span class="rounded-full bg-slate-100 px-3 py-1.5">2–5 гравців</span><span class="rounded-full bg-slate-100 px-3 py-1.5">45 хв</span></div>
+                <h3 class="mt-4 text-xl font-extrabold">Разом до мети</h3>
+                <p class="mt-2 min-h-12 text-sm leading-6 text-slate-600">Об’єднайтеся, щоб пройти пригоду, у якій перемагає вся команда.</p>
+                <a href="#quiz" class="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[#E63946] px-4 font-bold text-[#A10F1D] shadow-sm transition duration-200 hover:bg-[#E63946] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Отримати цю гру</a>
+              </div>
+            </article>
+
+            <!-- Картка гри: Котячий переполох -->
+            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <div class="relative mb-4 h-48 w-full overflow-hidden rounded-2xl">
+                <img src="images/kotyachyi_perepolokh.jpg" alt="Гра Котячий переполох" class="h-full w-full object-cover">
+              </div>
+              <div class="p-5">
+                <div class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600"><span class="rounded-full bg-slate-100 px-3 py-1.5">2–6 гравців</span><span class="rounded-full bg-slate-100 px-3 py-1.5">20 хв</span></div>
+                <h3 class="mt-4 text-xl font-extrabold">Котячий переполох</h3>
+                <p class="mt-2 min-h-12 text-sm leading-6 text-slate-600">Легка карткова гра для сім’ї, яка подарує радість і швидкий реванш.</p>
+                <a href="#quiz" class="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[#E63946] px-4 font-bold text-[#A10F1D] shadow-sm transition duration-200 hover:bg-[#E63946] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Отримати цю гру</a>
+              </div>
+            </article>
+
+            <!-- Картка гри: Майстри королівства -->
+            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+              <div class="relative mb-4 h-48 w-full overflow-hidden rounded-2xl">
+                <img src="images/maistry_korolivstva.jpg" alt="Гра Майстри королівства" class="h-full w-full object-cover">
+              </div>
+              <div class="p-5">
+                <div class="flex flex-wrap gap-2 text-xs font-semibold text-slate-600"><span class="rounded-full bg-slate-100 px-3 py-1.5">2–4 гравці</span><span class="rounded-full bg-slate-100 px-3 py-1.5">60 хв</span></div>
+                <h3 class="mt-4 text-xl font-extrabold">Майстри королівства</h3>
+                <p class="mt-2 min-h-12 text-sm leading-6 text-slate-600">Будуйте плани, збирайте ресурси та доведіть, хто тут стратег.</p>
+                <a href="#quiz" class="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[#E63946] px-4 font-bold text-[#A10F1D] shadow-sm transition duration-200 hover:bg-[#E63946] hover:text-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] focus-visible:ring-offset-2">Отримати цю гру</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Переваги підписки -->
+      <section id="benefits" class="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <div class="mx-auto mb-10 max-w-2xl text-center">
+            <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#A10F1D]">Підписка без зайвих турбот</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Ми подбали про все важливе</h2>
+          </div>
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+            <!-- Перевага: швидка доставка -->
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-rose-50 text-2xl" aria-hidden="true">📦</span>
+              <h3 class="mt-5 text-xl font-extrabold">Швидка доставка</h3>
+              <p class="mt-3 leading-7 text-slate-600">Ваш бокс вирушить до вас і прибуде за 1–2 дні. Доставка по Україні — до відділення чи дверей.</p>
+            </article>
+            <!-- Перевага: розумний підбір без повторів -->
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-50 text-2xl" aria-hidden="true">✨</span>
+              <h3 class="mt-5 text-xl font-extrabold">Підбір без дублікатів</h3>
+              <p class="mt-3 leading-7 text-slate-600">Розумний підбір враховує ваш смак, досвід і колекцію, щоб кожна нова гра була справді новою.</p>
+            </article>
+            <!-- Перевага: цифрові правила та підказки -->
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-sky-50 text-2xl" aria-hidden="true">📱</span>
+              <h3 class="mt-5 text-xl font-extrabold">Цифровий компаньйон</h3>
+              <p class="mt-3 leading-7 text-slate-600">Зрозумілі інтерактивні правила й підказки допоможуть швидко розібратися та почати грати.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Як працює сервіс: три кроки, відео та перехід до квізу -->
+      <section id="how-it-works" class="bg-[#1D1D1F] px-4 py-16 text-white sm:px-6 sm:py-20 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <div class="mx-auto mb-12 max-w-2xl text-center">
+            <p class="text-sm font-bold uppercase tracking-[0.16em] text-rose-300">Три кроки — і можна грати</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Ваш наступний вечір починається тут</h2>
+          </div>
+          <!-- Послідовні кроки від квізу до першої партії -->
+          <ol class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <li class="relative rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
+              <span class="text-sm font-extrabold text-rose-300">КРОК 01</span>
+              <h3 class="mt-4 text-2xl font-extrabold">Пройдіть квіз</h3>
+              <p class="mt-3 leading-7 text-slate-300">Розкажіть, скільки вас буде, що любите і який настрій у вашої компанії.</p>
+            </li>
+            <li class="relative rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
+              <span class="text-sm font-extrabold text-rose-300">КРОК 02</span>
+              <h3 class="mt-4 text-2xl font-extrabold">Отримайте свій бокс</h3>
+              <p class="mt-3 leading-7 text-slate-300">Ми підберемо цікаві ігри з урахуванням ваших побажань і вже наявної колекції.</p>
+            </li>
+            <li class="relative rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-8">
+              <span class="text-sm font-extrabold text-rose-300">КРОК 03</span>
+              <h3 class="mt-4 text-2xl font-extrabold">Відкрийте й грайте</h3>
+              <p class="mt-3 leading-7 text-slate-300">Доставка до 1–2 днів, цифрові правила й жодного довгого читання перед стартом.</p>
+            </li>
+          </ol>
+          <!-- Відеопрезентація сервісу -->
+          <div class="mx-auto mt-12 max-w-4xl">
+            <div class="aspect-video w-full overflow-hidden rounded-2xl shadow-xl">
+              <iframe
+                class="h-full w-full border-0"
+                src="https://www.youtube-nocookie.com/embed/2zQboeH2nHk"
+                title="Відеопрезентація сервісу Кубики &amp; Карти"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          <div class="mt-10 text-center">
+            <a href="#quiz" class="inline-flex min-h-12 items-center justify-center rounded-full bg-[#E63946] px-7 font-bold text-white shadow-sm transition duration-200 hover:bg-[#C82230] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1D1D1F]">Почати з квізу <span class="ml-2" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ: відповіді на поширені запитання -->
+      <section id="faq" class="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div class="mx-auto max-w-3xl">
+          <div class="mb-10 text-center">
+            <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#A10F1D]">Усе просто і прозоро</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Часті запитання</h2>
+          </div>
+          <!-- Розгортані відповіді про доставку, колекцію та підписку -->
+          <div class="space-y-3">
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5 open:shadow-sm sm:p-6">
+              <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-left font-bold text-[#111418] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] [&::-webkit-details-marker]:hidden">Куди доставляєте і скільки це займає?<span class="text-xl text-[#A10F1D] transition group-open:rotate-45" aria-hidden="true">+</span></summary>
+              <p class="pt-3 leading-7 text-slate-600">Доставляємо по всій Україні до відділень і поштоматів перевізників. Зазвичай бокс прибуває за 1–2 дні після відправлення.</p>
+            </details>
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5 open:shadow-sm sm:p-6">
+              <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-left font-bold text-[#111418] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] [&::-webkit-details-marker]:hidden">Що, якщо гра вже є в моїй колекції?<span class="text-xl text-[#A10F1D] transition group-open:rotate-45" aria-hidden="true">+</span></summary>
+              <p class="pt-3 leading-7 text-slate-600">Перед підбором ми враховуємо ваш список ігор, тож дублікатам не місце у вашому боксі. Оновлюйте колекцію в профілі — і добиратимемо новинки.</p>
+            </details>
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5 open:shadow-sm sm:p-6">
+              <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-left font-bold text-[#111418] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] [&::-webkit-details-marker]:hidden">Чи можна призупинити або скасувати підписку?<span class="text-xl text-[#A10F1D] transition group-open:rotate-45" aria-hidden="true">+</span></summary>
+              <p class="pt-3 leading-7 text-slate-600">Так, ви можете призупинити наступне відправлення або скасувати підписку в особистому кабінеті. Ніяких штрафів чи дзвінків із відмовляннями.</p>
+            </details>
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5 open:shadow-sm sm:p-6">
+              <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-left font-bold text-[#111418] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63946] [&::-webkit-details-marker]:hidden">А якщо правила здаються складними?<span class="text-xl text-[#A10F1D] transition group-open:rotate-45" aria-hidden="true">+</span></summary>
+              <p class="pt-3 leading-7 text-slate-600">У кожному боксі є доступ до цифрового компаньйона з коротким поясненням правил і підказками для першої партії.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Підвал: бренд, посилання, розсилка та карта доставки -->
+    <footer id="contacts" class="bg-[#111418] px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <!-- Брендинг і навігаційні посилання футера -->
+          <div class="grid grid-cols-1 gap-10 sm:grid-cols-3">
+            <div>
+              <a href="#home" class="inline-flex min-h-11 items-center gap-2 rounded-lg text-lg font-extrabold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
+                <span class="grid h-9 w-9 place-items-center rounded-xl bg-[#E63946] text-white" aria-hidden="true">🎲</span>
+                <span>Кубики <span class="text-rose-400">&amp;</span> Карти</span>
+              </a>
+              <p class="mt-4 max-w-xs leading-7 text-slate-300">Збираємо людей навколо хороших ігор. Ваш наступний вечір — уже ближче.</p>
+            </div>
+            <div>
+              <h2 class="text-sm font-bold uppercase tracking-wider text-white">Гравцям</h2>
+              <ul class="mt-4 space-y-3 text-sm text-slate-300">
+                <li><a class="inline-flex min-h-8 items-center hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" href="#catalog">Каталог ігор</a></li>
+                <li><a class="inline-flex min-h-8 items-center hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" href="#how-it-works">Як це працює</a></li>
+                <li><a class="inline-flex min-h-8 items-center hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" href="#faq">Часті запитання</a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 class="text-sm font-bold uppercase tracking-wider text-white">Інформація</h2>
+              <ul class="mt-4 space-y-3 text-sm text-slate-300">
+                <li><a class="inline-flex min-h-8 items-center hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" href="#faq">Умови підписки</a></li>
+                <li><a class="inline-flex min-h-8 items-center hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" href="#faq">Політика конфіденційності</a></li>
+                <li><a class="inline-flex min-h-8 items-center hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" href="mailto:hello@kubykymapy.ua">Написати нам</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Форма підписки на розсилку та карта України -->
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div>
+              <h2 class="text-sm font-bold uppercase tracking-wider text-white">Трохи ігрових новин</h2>
+              <p class="mt-4 text-sm leading-6 text-slate-300">Новинки, ідеї для вечорів і знижки — без спаму.</p>
+              <form class="mt-4 flex flex-col gap-2" action="mailto:hello@kubykymapy.ua" method="post" enctype="text/plain">
+                <label class="sr-only" for="newsletter-email">Ваша електронна пошта</label>
+                <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Ваша електронна пошта" required class="min-h-12 rounded-xl border border-slate-600 bg-[#1D1D1F] px-4 text-white placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
+                <button type="submit" class="min-h-12 rounded-xl bg-[#E63946] px-4 font-bold text-white shadow-sm transition duration-200 hover:bg-[#C82230] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111418]">Підписатися</button>
+              </form>
+            </div>
+            <section aria-labelledby="delivery-map-title">
+              <h2 id="delivery-map-title" class="text-sm font-bold uppercase tracking-wider text-white">Доставка по Україні</h2>
+              <div class="mt-4 h-80 w-full overflow-hidden rounded-2xl shadow-md md:h-96">
+                <iframe
+                  class="h-full w-full border-0"
+                  src="https://www.google.com/maps?q=Ukraine&output=embed"
+                  title="Карта Google із зоною доставки по Україні"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- Копірайт і завершальний підпис -->
+        <div class="mt-10 flex flex-col gap-3 border-t border-white/15 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Кубики &amp; Карти. Усі права захищені.</p>
+          <p>Зроблено для вечорів разом <span class="text-rose-400" aria-label="з любов'ю">♥</span></p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const siteMenu = document.getElementById("site-menu");
+      const menuIcon = document.getElementById("menu-icon");
+
+      menuToggle.addEventListener("click", () => {
+        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+        menuToggle.setAttribute("aria-label", isExpanded ? "Відкрити меню" : "Закрити меню");
+        siteMenu.classList.toggle("hidden", isExpanded);
+        menuIcon.innerHTML = isExpanded
+          ? '<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>'
+          : '<path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/>';
+      });
+
+      siteMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.matchMedia("(max-width: 1023px)").matches) {
+            siteMenu.classList.add("hidden");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Відкрити меню");
+            menuIcon.innerHTML = '<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>';
+          }
+        });
+      });
+
+      const quizForm = document.getElementById("quiz-form");
+      const quizSteps = Array.from(quizForm.querySelectorAll("[data-quiz-step]"));
+      const quizBack = document.getElementById("quiz-back");
+      const quizNext = document.getElementById("quiz-next");
+      const quizError = document.getElementById("quiz-error");
+      const quizProgress = document.getElementById("quiz-progress");
+      const quizProgressBar = document.getElementById("quiz-progress-bar");
+      const quizStepLabel = document.getElementById("quiz-step-label");
+      const quizProgressLabel = document.getElementById("quiz-progress-label");
+      const quizResult = document.getElementById("quiz-result");
+      let currentStep = 0;
+
+      function updateQuiz() {
+        quizSteps.forEach((step, index) => {
+          step.hidden = index !== currentStep;
+        });
+        const progress = Math.round(((currentStep + 1) / quizSteps.length) * 100);
+        const progressWidths = ["w-1/4", "w-1/2", "w-3/4", "w-full"];
+        quizStepLabel.textContent = `Крок ${currentStep + 1} із ${quizSteps.length}`;
+        quizProgressLabel.textContent = `${progress}% завершено`;
+        quizProgress.setAttribute("aria-valuenow", String(progress));
+        quizProgressBar.classList.remove(...progressWidths);
+        quizProgressBar.classList.add(progressWidths[currentStep]);
+        quizBack.disabled = currentStep === 0;
+        quizBack.classList.toggle("opacity-50", currentStep === 0);
+        quizNext.textContent = currentStep === quizSteps.length - 1 ? "Підібрати гру" : "Далі →";
+        quizError.classList.add("hidden");
+      }
+
+      quizNext.addEventListener("click", () => {
+        const selected = quizSteps[currentStep].querySelector('input[type="radio"]:checked');
+        if (!selected) {
+          quizError.classList.remove("hidden");
+          quizSteps[currentStep].querySelector('input[type="radio"]').focus();
+          return;
+        }
+        if (currentStep < quizSteps.length - 1) {
+          currentStep += 1;
+          updateQuiz();
+          quizSteps[currentStep].querySelector("legend").focus();
+          return;
+        }
+
+        const answers = new FormData(quizForm);
+        const mood = answers.get("mood");
+        const titles = {
+          laugh: "Час для веселощів і гучного сміху!",
+          strategy: "Вечір для продуманих ходів і сміливих рішень.",
+          "co-op": "Разом ви зможете більше — час командної пригоди!",
+          family: "Затишний вечір, що сподобається всій родині.",
+        };
+        const descriptions = [
+          `Для ${answers.get("players")} гравців ми підберемо гру на ${answers.get("duration") === "quick" ? "коротку партію" : answers.get("duration") === "medium" ? "приємний ігровий вечір" : "довгий насичений вечір"}.`,
+          answers.get("experience") === "new"
+            ? "Почнемо з простих правил і швидкого старту."
+            : answers.get("experience") === "some"
+              ? "Додамо цікаве рішення та простір для нових відкриттів."
+              : "Шукатимемо глибокі рішення для досвідченої компанії.",
+        ];
+        document.getElementById("quiz-result-title").textContent = titles[mood];
+        document.getElementById("quiz-result-description").textContent = descriptions.join(" ");
+        quizResult.classList.remove("hidden");
+        quizNext.classList.add("hidden");
+        quizError.classList.add("hidden");
+        quizResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      quizBack.addEventListener("click", () => {
+        if (currentStep > 0) {
+          currentStep -= 1;
+          updateQuiz();
+        }
+      });
+
+      quizForm.addEventListener("change", (event) => {
+        if (event.target.matches('input[type="radio"]')) {
+          quizError.classList.add("hidden");
+        }
+      });
+
+      updateQuiz();
+    </script>
+  </body>
+</html>
